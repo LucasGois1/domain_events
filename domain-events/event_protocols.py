@@ -50,6 +50,7 @@ class EventHandlerInterface(Generic[T], metaclass=ABCMeta):
             :param event: The event that will be handled.
             :return: None
         """
+
         raise NotImplementedError()
 
 
