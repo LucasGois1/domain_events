@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from datetime import datetime
 from typing import Dict, Set
 from uuid import uuid4
 
@@ -9,7 +8,7 @@ from event_protocols import EventInterface, EventHandlerInterface, EventDispatch
 @dataclass(slots=True)
 class Order:
     """
-        Order class, simple example of a domain entity.
+        A simple example of a domain entity.
     """
 
     status: str
@@ -19,11 +18,22 @@ class Order:
 
 @dataclass(slots=True)
 class OrderCreatedEvent(EventInterface[Order]):
-    date_time_ocurred: datetime = field(default=datetime.utcnow().isoformat())
+    """
+        An event example, this must be a container representation with all properties you need in your system to use when
+        an order was created. This is a simple example of a domain event. You can override the 'to_dict' method and add
+        properties if is necessary.
+    """
+
+    pass
 
 
 @dataclass(unsafe_hash=True, order=True)
 class SendNewPaymentRequest(EventHandlerInterface[OrderCreatedEvent]):
+    """
+        This is a simple example of a domain event handler that receive the OrderCreatedEvent and do anything
+        with it like request a payment.
+    """
+
     def handle(self, event: OrderCreatedEvent) -> None:
         print('Sending request to payment Gateway')
 
