@@ -36,14 +36,12 @@ class EventInterface(Generic[K], metaclass=ABCMeta):
 T = TypeVar('T', bound=EventInterface)
 
 
-class EventHandlerInterface(Generic[T]):
+class EventHandlerInterface(Generic[T], metaclass=ABCMeta):
     """
         EventHandlerInterface is an interface that defines how EventHandlers should be implemented. A Generic's is defined
         to be able to handle any Event, you must declare what Event you want to handle on your real Handler. Your event
         must be implemented from a EventInterface.
     """
-
-    __metaclass__ = ABCMeta
 
     def handle(self, event: T) -> None:
         """
@@ -66,12 +64,10 @@ class Order:
     price: float = field(default=0)
 
 
-class EventDispatcherInterface:
+class EventDispatcherInterface(metaclass=ABCMeta):
     """
         EventDispatcherInterface is responsible for dispatching events to all registered event handlers.
     """
-
-    __metaclass__ = ABCMeta
 
     def notify(self, event: EventInterface) -> None:
         """
