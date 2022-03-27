@@ -61,7 +61,8 @@ class EventDispatcher(EventDispatcherInterface):
             self.__handlers[event_name].remove(event_handler)
 
         except KeyError as error:
-            raise ValueError(f"EventHandler '{event_handler.__class__.__name__}' not registered for event '{event_name}'") from error
+            raise ValueError(
+                f"EventHandler '{event_handler.__class__.__name__}' not registered for event '{event_name}'") from error
 
     def unregister_all(self) -> None:
         self.__handlers = {}
