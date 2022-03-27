@@ -23,6 +23,7 @@ class EventInterface(Generic[K], metaclass=ABCMeta):
     def to_dict(self) -> Dict:
         """
             Convert the event to a dictionary.
+
             :return: A dictionary with the event data.
         """
 
@@ -107,6 +108,7 @@ class EventDispatcherInterface:
     def unregister_all(self) -> None:
         """
             Unregister all event handlers from the event dispatcher.
+
             :return: None
         """
 
